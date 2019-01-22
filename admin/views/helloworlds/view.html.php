@@ -107,6 +107,7 @@ class HelloWorldViewHelloWorlds extends JViewLegacy
 		}
 		if ($this->canDo->get('core.edit') || JFactory::getUser()->authorise('core.manage', 'com_checkin')){
 			JToolBarHelper::checkin('helloworlds.checkin');
+			JToolBarHelper::custom('HelloWorlds.extrahello', '', '', 'Extra Hello', true);
 		}
 		if ($this->canDo->get('core.admin')) {
 			JToolBarHelper::divider();
