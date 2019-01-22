@@ -247,4 +247,19 @@ class HelloWorldModelHelloWorld extends JModelAdmin{
 
 		return true;
 	}
+
+	public function extrahello($cid)
+	{
+		$results = array();
+		for ($i=0; $i < count($cid); $i++) { 
+			$db = JFactory::getDbo();
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('greeting')));
+       		$query->from($db->quoteName('#__helloworld'));
+        	$query->where('id LIKE ' . $cid[$i]);
+         	$db->setQuery($query); 
+         	$results[$i] = $db->loadResult(); 
+		}
+   		return $results;
+	}
 }

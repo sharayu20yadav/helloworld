@@ -33,4 +33,28 @@ class HelloWorldControllerHelloWorlds extends JControllerAdmin
 
 		return $model;
 	}
+
+	public function extrahello() {
+
+		// Get the input
+		$input = JFactory::getApplication()->input;
+		$cid = $this->input->get('cid', array(), 'array');
+
+		// Sanitize the input
+		$cid = ArrayHelper::toInteger($cid);
+
+		// Get the model
+		$model = $this->getModel();
+
+		$result_list = $model->extrahello($cid);
+		
+		$etext = "";
+		for ($i=0; $i < count($result_list); $i++) { 
+			$etext =  $etext . "Extra ". $result_list[$i] . "<br>";
+		}
+	
+		$this->setMessage($etext, $type = 'message');
+		$this->setRedirect(JRoute::_('index.php?option=com_helloworld&view=HelloWorlds', false));
+
+	}
 }
